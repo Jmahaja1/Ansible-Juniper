@@ -1,0 +1,33 @@
+---
+- name: Get Device Facts
+  hosts: juniperdevice
+  connection: local
+  gather_facts: no
+  vars:
+    ansible_ssh_private_key_file: "../xxx"
+    ansible_python_interpreter: ~/xxxx/python3.9
+    netconf_port: 22
+    Make: Juniper
+    connection_info:
+      host: "{{ ansible_ssh_host }}"
+      port: 22
+      user: xxx
+      ssh_private_key_file: "{{ ansible_ssh_private_key_file }}"
+   
+  tasks:
+
+  - name: Retrieve facts from devices running Junos OS
+    junipernetworks.junos.junos_facts:
+    register: juniper_facts
+
+  - name: Print Juniper facts
+    debug:
+      var: juniper_facts
+      
+  - name: Create File
+    template:
+     src: junipertest.j2
+     dest: "/xxx/xxx/{{ inventory_hostname }}-details"
+     mode: 0744
+    connection: local
+    ignore_errors: yes
