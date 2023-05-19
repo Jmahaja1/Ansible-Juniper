@@ -1,0 +1,13 @@
+[juniperdevice]
+xx.xx.xx.xx:22 ansible_connection=netconf ansible_network_os=junos ansible_ssh_private_key_file=~/xx/path/to/rsa_file
+
+
+[juniperdevice:vars]
+
+remote_user=xxxxx
+ansible_ssh_priviate_key_file=xxx
+ansible_command_timeout=120
+ansible_user=xxxx
+remote_user=xxxx
+ansible_network_os=junipernetworks.junos.junos
+ansible_netconf_port=22
